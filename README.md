@@ -18,8 +18,9 @@ Les participants de ce projet sont :
   Ensuite, le code défini des fonctions liées au calcul du TF-IDF. Ces fonctions permettent de construire une matrice TF-IDF à partir des fichiers texte dans le 
   répertoire spécifié.
 6-Appels de fonctions :
-  Enfin, des appels de fonctions sont effectués en utilisant un répertoire spécifique (./cleaned). Ces appels incluent des opérations telles que l'affichage des mots 
-  importants, l'analyse des mentions de la "Nation", etc.
+  Enfin, des appels de fonctions sont effectués en utilisant un répertoire spécifique (./cleaned). Ces appels incluent des opérations telles que l'affichage des 
+  mots importants
 7-Note sur la structure du projet :
   Le code est organisé de manière à ce qu'une fonction principale menu_principal puisse être utilisée pour interagir avec les différentes fonctionnalités du projet.
+  
 En résumé, ce code combine des opérations de traitement de texte (conversion en minuscules, suppression de la ponctuation) avec des analyses plus avancées telles que le calcul du TF-IDF et l'analyse des mentions de certains termes spécifiques dans les discours des présidents. Il offre une interface utilisateur simple à travers le menu principal pour explorer ces fonctionnalités.
