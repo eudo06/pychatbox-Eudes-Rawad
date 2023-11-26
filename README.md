@@ -1,2 +1,5 @@
 # pychatbox-Eudes-Rawad
-kouadio bli jean eudes 
+     #nom d'exposant
+  -Kouadio bli jean eudes 
+  -Rawad allam
+     #lien direct vers le dépôt git 
