@@ -21,6 +21,7 @@ def extract_name(files_names):
         president.append(nom_president)
     final_president = set(president)
     return sorted(final_president)
+print(extract_name)
 
 # Associer le prénom du Président à son nom
 def associer_prenom(liste_nom) :
@@ -111,6 +112,7 @@ def calculer_tf(texte):
     return tf_dict
 
 
+
 def calculer_idf(repertoire):
     nb_documents = len(os.listdir(repertoire))
     idf_dict = {}
@@ -157,6 +159,7 @@ def construire_matrice_tfidf(repertoire):
         tfidf_matrix.append(tfidf_row)
 
     return tfidf_matrix, list(mots_uniques)
+
 # Calculer la similarité avec chaque document dans le corpus
 
 
@@ -263,50 +266,7 @@ def list_of_files(directory, extension):
 
 
 
-def menu_principal(repertoire):
-    while True:
-        print("\nMenu Principal:")
-        print("1. Convertir texte en minuscule")
-        print("2. Afficher les mots les moins importants dans le corpus de documents")
-        print("3. Afficher le(s) mot(s) ayant le score TF-IDF le plus élevé")
-        print("4. Afficher le(s) mot(s) le(s) plus répété(s) par le président Chirac")
-        print("5. Analyser les mentions de la «Nation» par les présidents")
-        print("6. Trouver le(s) premier(s) président(s) à parler du climat et/ou de l'écologie")
-        print("7. Trouver le(s) mot(s) évoqué(s) par tous les présidents")
-        print("8. Quitter")
 
-        choix = input("Choisissez une option (1-8): ")
-
-        if choix == "1":
-            convert_minuscule()
-            ponctuation_delete()
-        elif choix == "2":
-            mots_non_importants(repertoire)
-        elif choix == "3":
-            mots_plus_importants(repertoire)
-        elif choix == "4":
-            president_chirac = "Chirac"
-            mots_plus_repetes_par_president(repertoire, president_chirac)
-        elif choix == "5":
-            analyse_mentions_nation(repertoire)
-        elif choix == "6":
-            premier_president_a_parler_climat_ecologie(repertoire)
-        elif choix == "7":
-            mots_evoques_par_tous_presidents(repertoire)
-        elif choix == "8":
-            print("Programme terminé.")
-            break
-        else:
-            print("Option non valide. Veuillez choisir une option entre 1 et 8.")
-
-if __name__ == "__main__":
-    repertoire_corpus = "./cleaned"
-    menu_principal(repertoire_corpus)
-    directory = "./speeches"
-    files_names = list_of_files(directory, "txt")
-    mots_uniques = construire_matrice_tfidf(repertoire_corpus)[1]
-    idf_dict = calculer_idf(repertoire_corpus)
-    tfidf_matrix = construire_matrice_tfidf(repertoire_corpus)[0]
 
 #partie 2 du projet
 import string
@@ -386,29 +346,74 @@ def calculate_tfidf_vector(question_words, tf_dict, idf_dict):
 
 
 
+
+
+
+#Menu principal
 if __name__ == "__main__":
-
-    # Demander à l'utilisateur de saisir une question
-    question_utilisateur = input("Posez une question : ")
-
-    # Tokeniser la question
-    mots_question = tokenize_question(question_utilisateur)
-
-    # Afficher les mots de la question
-    print("Mots de la question :", mots_question)
-
-    # Identifier les termes communs avec le corpus
-    termes_communs = find_common_terms(mots_question, mots_uniques)
-
-    # Afficher les termes communs
-    print("Termes communs avec le corpus :", termes_communs)
-
+    repertoire_corpus = "./cleaned"
+    directory = "./speeches"
+    files_names = list_of_files(directory, "txt")
+    mots_uniques = construire_matrice_tfidf(repertoire_corpus)[1]
+    idf_dict = calculer_idf(repertoire_corpus)
     tf_matrix_corpus = calculate_tf_for_corpus(repertoire_corpus)
-    # Calculer le vecteur TF-IDF de la question
-    tfidf_vector_question = calculate_tfidf_vector(mots_question, tf_matrix_corpus[0], idf_dict)
 
-    # Afficher le vecteur TF-IDF de la question
-    print("Vecteur TF-IDF de la question :", tfidf_vector_question)
+    while True:
+        print("\nMenu Principal:")
+        print("1. Accéder aux fonctionnalités de la partie 1")
+        print("2. Accéder au mode Chatbot (partie 2)")
+        print("3. Quitter")
+
+        choix = input("Choisissez une option (1-3): ")
+
+        if choix == "1":
+            print("\nFonctionnalités de la Partie 1:")
+            print("1. Convertir texte en minuscule")
+            print("2. Afficher les mots les moins importants dans le corpus de documents")
+            print("3. Afficher le(s) mot(s) ayant le score TF-IDF le plus élevé")
+            print("4. Afficher le(s) mot(s) le(s) plus répété(s) par le président Chirac")
+            print("5. Analyser les mentions de la «Nation» par les présidents")
+            print("6. Trouver le(s) premier(s) président(s) à parler du climat et/ou de l'écologie")
+            print("7. Trouver le(s) mot(s) évoqué(s) par tous les présidents")
+            print("8. Retour au menu principal")
+
+            choix_partie1 = input("Choisissez une option (1-8): ")
+
+            if choix_partie1 == "1":
+                convert_minuscule()
+                ponctuation_delete()
+            elif choix_partie1 == "2":
+                mots_non_importants(repertoire_corpus)
+            elif choix_partie1 == "3":
+                mots_plus_importants(repertoire_corpus)
+            elif choix_partie1 == "4":
+                president_chirac = "Chirac"
+                mots_plus_repetes_par_president(repertoire_corpus, president_chirac)
+            elif choix_partie1 == "5":
+                analyse_mentions_nation(repertoire_corpus)
+            elif choix_partie1 == "6":
+                premier_president_a_parler_climat_ecologie(repertoire_corpus)
+            elif choix_partie1 == "7":
+                mots_evoques_par_tous_presidents(repertoire_corpus)
+            elif choix_partie1 == "8":
+                continue
+            else:
+                print("Option non valide. Veuillez choisir une option entre 1 et 8.")
+        elif choix == "2":
+            # Mode Chatbot (Partie 2)
+            question_utilisateur = input("Posez une question : ")
+            mots_question = tokenize_question(question_utilisateur)
+            termes_communs = find_common_terms(mots_question, mots_uniques)
+            tfidf_vector_question = calculate_tfidf_vector(mots_question, tf_matrix_corpus[0], idf_dict)
+            print("\nRésultats du Chatbot:")
+            print("Termes communs avec le corpus :", termes_communs)
+            print("Vecteur TF-IDF de la question :", tfidf_vector_question)
+        elif choix == "3":
+            print("Programme terminé.")
+            break
+        else:
+            print("Option non valide. Veuillez choisir une option entre 1 et 3.")
+
 
 
 
